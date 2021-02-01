@@ -71,5 +71,12 @@ pipeline {
                 }
             }
         }
+ 
+          stage('Building Image') {
+            steps {
+                sh 'docker build -t 192.168.100.14:5000/dev/hello-world:latest .'
+            }
+        }
+        
     }
 }
