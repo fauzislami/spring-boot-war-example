@@ -73,7 +73,7 @@ pipeline {
         }
  
         stage('Build and Push Image') {
-            steps {
+            script {
                 docker.withRegistry('http://192.168.100.14:5000', 'nexus-user-credentials') {
                     def customImage = docker.build("192.168.100.14:5000/dev/hello-world:${env.BUILD_ID}")
                     customImage.push()
