@@ -78,5 +78,11 @@ pipeline {
             }
         }
         
+         stage('Push Image to Nexus') {
+            steps {
+                sh 'docker push 192.168.100.14:5000/dev/hello-world:latest'
+            }
+        }
+        
     }
 }
