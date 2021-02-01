@@ -72,17 +72,15 @@ pipeline {
             }
         }
  
-          stage('Building Image') {
+        stage('Build and Push Image') {
             steps {
-                sh 'docker build -t 192.168.100.14:5000/dev/hello-world:latest .'
+                docker.withRegistry('http://192.168.100.14:5000', 'nexus-user-credentials') {
+                    def customImage = docker.build("192.168.100.14:5000/dev/hello-world:${env.BUILD_ID}")
+                    customImage.push()
+                }
             }
         }
         
-         stage('Push Image to Nexus') {
-            steps {
-                sh 'docker push 192.168.100.14:5000/dev/hello-world:latest'
-            }
-        }
         
     }
 }
