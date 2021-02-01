@@ -1,1 +1,1 @@
-java -jar /hello-world-0.0.1-SNAPSHOT.war
+java -jar /my-app-1.0-SNAPSHOT.jar
