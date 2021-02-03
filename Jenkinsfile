@@ -9,7 +9,7 @@ pipeline {
     environment {
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "192.168.100.14:80"
+        NEXUS_URL = "192.168.1.116:8081"
         NEXUS_REPOSITORY = "maven-nexus-repo"
         NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
     }
@@ -75,8 +75,8 @@ pipeline {
         stage('Build and Push Image') {
             steps {
                 script {
-                    docker.withRegistry('http://192.168.100.14:5000', 'nexus-user-credentials') {
-                        def customImage = docker.build("192.168.100.14:5000/dev/hello-world:${env.BUILD_ID}")
+                    docker.withRegistry('http://192.168.1.116:5000', 'nexus-user-credentials') {
+                        def customImage = docker.build("192.168.1.116:5000/dev/hello-world:${env.BUILD_ID}")
                             customImage.push()
                      }
                 }
